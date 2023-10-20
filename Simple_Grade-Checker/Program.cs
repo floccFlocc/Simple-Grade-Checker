@@ -6,11 +6,11 @@ string userName = "";
 string passWord = "";
 string admin = "teacher";
 string adminPassWord = "1234";
-string student = "student";
+string[] studentAccounts = new string[] { "Sophia", "Andrew", "Emma", "Logan" };
+string[] studentPasswords = new string[] { "123", "456", "789", "012" };
+string[] subjects = new string[] { "English 101", "Algebra 101", "Biology 101", "Computer Science I", "Psychology 101" };
 string studentPassword = "1234";
 string option = "";
-string firstname = "";
-string lastname = "";
 
 Console.WriteLine("Hello! This is my first C# console project.\n\n");
 
@@ -33,26 +33,26 @@ if (userName.ToLower() == admin && passWord.ToLower() == adminPassWord) {
     option = Console.ReadLine();
 
 }
-else if (userName.ToLower() == student && passWord.ToLower() == studentPassword) {
-
-    Console.WriteLine("Please provide your fill out this to view your grades.");
-    Console.Write("First Name: ");
-    firstname = Console.ReadLine();
-    Console.Write("Last Name: ");
-    lastname = Console.ReadLine();
-
-    showGrade(firstname);
-
-}
 else
 {
-    Console.WriteLine("Access Denied. Please Try Again.");
-    login();
+    for (int i = 0; i<studentAccounts.Length; i++)
+    {
+        if (studentAccounts[i].ToLower() == userName.ToLower() && studentPasswords[i].ToLower() == passWord.ToLower())
+        {
+            showGrade(studentAccounts[i]);
+        }
+        else
+        {
+            Console.Write("Access denied. Try again.");
+            login();
+        }
+    }
 }
 
 
 void login()
 {
+    Console.Clear();
     Console.Write("Username:");
     userName = Console.ReadLine();
 
